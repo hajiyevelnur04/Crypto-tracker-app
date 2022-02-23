@@ -1,28 +1,27 @@
 package com.crypto.tracker.presentation.home
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
-import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.crypto.tracker.databinding.ItemCryptoBinding
-import com.crypto.tracker.model.remote.response.CryptoModel
+import com.crypto.tracker.databinding.ItemCoinMarketBinding
+import com.crypto.tracker.model.remote.response.CoinMarket
 
-class HomeAdapter(private val listener: (CryptoModel) -> Unit) :
-    PagingDataAdapter<CryptoModel, HomeAdapter.HomeAdapterViewHolder>(Companion) {
+class HomeAdapter(private val listener: (CoinMarket) -> Unit) :
+    ListAdapter<CoinMarket, HomeAdapter.HomeAdapterViewHolder>(Companion) {
 
-    class HomeAdapterViewHolder(val binding: ItemCryptoBinding) :
+    class HomeAdapterViewHolder(val binding: ItemCoinMarketBinding) :
         RecyclerView.ViewHolder(binding.root)
 
-    companion object : DiffUtil.ItemCallback<CryptoModel>() {
-        override fun areItemsTheSame(oldItem: CryptoModel, newItem: CryptoModel): Boolean = oldItem === newItem
-        override fun areContentsTheSame(oldItem: CryptoModel, newItem: CryptoModel): Boolean = oldItem.id == newItem.id
+    companion object : DiffUtil.ItemCallback<CoinMarket>() {
+        override fun areItemsTheSame(oldItem: CoinMarket, newItem: CoinMarket): Boolean = oldItem === newItem
+        override fun areContentsTheSame(oldItem: CoinMarket, newItem: CoinMarket): Boolean = oldItem.id == newItem.id
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeAdapterViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
-        val binding = ItemCryptoBinding.inflate(layoutInflater, parent, false)
+        val binding = ItemCoinMarketBinding.inflate(layoutInflater, parent, false)
 
         return HomeAdapterViewHolder(binding)
     }

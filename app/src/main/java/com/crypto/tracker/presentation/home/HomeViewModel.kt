@@ -1,23 +1,30 @@
 package com.crypto.tracker.presentation.home
 
-import androidx.lifecycle.ViewModel
-import com.crypto.tracker.model.remote.response.CryptoModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import com.crypto.tracker.base.BaseViewModel
+import com.crypto.tracker.model.remote.ClickModel
+import com.crypto.tracker.repository.ProjectRepository
+import kotlinx.coroutines.launch
 
 
-class HomeViewModel: ViewModel() {
+class HomeViewModel(private val repository: ProjectRepository): BaseViewModel() {
     val adapter = HomeAdapter{
         //to do on click
     }
+    private val _navigateToItemDetail = MutableLiveData<ClickModel>()
+    val navigateToItemDetail: LiveData<ClickModel>
+        get() = _navigateToItemDetail
 
     init {
-        setDummyTestCrypto()
+        getCoinMarket()
     }
 
-    private fun setDummyTestCrypto() {
-        val list = arrayListOf<CryptoModel>()
-        list.add(CryptoModel("1","test1"))
-        list.add(CryptoModel("2","test2"))
+    private fun getCoinMarket() {
+        coroutineScopeMain.launch {
+            //val data = repository.
+        }
 
-        // set it to paginable adapter
     }
+
 }
