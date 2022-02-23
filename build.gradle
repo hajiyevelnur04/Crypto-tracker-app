@@ -5,6 +5,31 @@ plugins {
     id 'org.jetbrains.kotlin.android' version '1.5.30' apply false
 }
 
+ext{
+    // Retrofit
+    version_retrofit = '2.9.0'
+    okhttp_version_interceptor = "4.9.3"
+
+    // Coroutines
+    version_kotlin_coroutines = "1.6.0"
+
+    // ViewModel and LiveData
+    version_lifecycle = "2.5.0-alpha02"
+    version_lifecycle_extensions = '2.2.0'
+
+    // Navigation
+    version_navigation = "2.3.5"
+
+    // Koin
+    version_koin = '3.2.0-beta-1'
+
+    // Navigation
+    version_navigation = "2.3.5"
+
+    // Glide image
+    version_glide = '4.13.0'
+}
+
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
