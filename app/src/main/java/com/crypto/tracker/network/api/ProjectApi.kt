@@ -12,6 +12,6 @@ interface ProjectApi {
     @GET("coin/{id}/tickers")
     suspend fun getCoinTickers(@Path("id") coinId: Int, id: Int): CryptoListResponse
 
-    @GET("coin/markets")
+    @GET("coins/markets")
     suspend fun getCoinMarkets(@Query("vs_currency") vsCurrency: String): List<CoinMarket>
 }

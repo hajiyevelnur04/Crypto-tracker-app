@@ -27,16 +27,19 @@ android {
         release {
             minifyEnabled false
             debuggable false
+            buildConfigField("String", "BASE_URL", '"https://api.coingecko.com/api/v3/"')
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         debug {
             minifyEnabled false
             debuggable true
+            buildConfigField("String", "BASE_URL", '"https://api.coingecko.com/api/v3/"')
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         mock {
             minifyEnabled false
             debuggable true
+            buildConfigField("String", "BASE_URL", '"https://api.coingecko.com/api/v3/"')
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }

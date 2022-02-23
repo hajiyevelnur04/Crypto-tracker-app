@@ -12,7 +12,6 @@
 
     <style name="AppTheme.Launcher">
         <item name="colorPrimaryDark">@color/colorPrimary</item>
-        <item name="android:windowBackground">@drawable/launch_screen</item>
         <item name="android:navigationBarColor">@color/colorPrimary</item>
     </style>
 </resources>
