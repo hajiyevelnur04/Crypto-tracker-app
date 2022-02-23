@@ -7,6 +7,8 @@ import android.view.View
 import android.view.ViewGroup
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.crypto.tracker.databinding.FragmentHomeBinding
+import com.crypto.tracker.model.remote.response.CoinMarket
+import com.crypto.tracker.utils.showDialog
 
 class HomeFragment : Fragment() {
 
@@ -24,6 +26,14 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        homeViewModel.navigateToItemDetail.observe(viewLifecycleOwner){
+            if(it.clicked){
+                val model = it.item as CoinMarket
+                showDialog(requireContext())
+            }
+        }
         return binding.root
     }
+
+
 }

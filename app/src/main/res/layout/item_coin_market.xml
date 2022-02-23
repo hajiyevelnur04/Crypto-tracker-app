@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
         <variable
@@ -10,15 +11,64 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="8dp">
+        android:foreground="?attr/selectableItemBackground"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/image"
+            setImageUrl="@{model.image}"
+            android:layout_width="@dimen/_48dp"
+            android:layout_height="@dimen/_48dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:background="@drawable/cryptocurrencies_128" />
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/title"
-            android:text="@{model.name}"
-            tools:text="Item"
             style="@style/TextAppearance.MaterialComponents.Headline6"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_width="0dp"
+            android:layout_marginLeft="@dimen/_8dp"
+            android:layout_height="match_parent"
+            android:text="@{model.name}"
+            app:layout_constraintStart_toEndOf="@+id/image"
+            app:layout_constraintTop_toTopOf="@+id/image"
+            tools:text="Item" />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/description"
+            style="@style/TextAppearance.MaterialComponents.Body2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:text="@{model.symbol}"
+            app:layout_constraintBottom_toBottomOf="@+id/image"
+            app:layout_constraintEnd_toEndOf="@+id/title"
+            app:layout_constraintStart_toStartOf="@+id/title"
+            app:layout_constraintTop_toBottomOf="@+id/title"
+            tools:text="Item" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/currentPrice"
+            style="@style/TextAppearance.MaterialComponents.Body1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_marginLeft="@dimen/_64dp"
+            android:layout_marginRight="@dimen/_64dp"
+            android:text="@{model.currentPrice.toString()}"
+            app:layout_constraintBottom_toBottomOf="@+id/image"
+            app:layout_constraintEnd_toStartOf="@+id/favorite"
+            app:layout_constraintTop_toTopOf="@+id/image"
+            tools:text="322.12" />
+
+        <ImageView
+            android:id="@+id/favorite"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_favorite"
+            android:layout_marginRight="@dimen/_16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

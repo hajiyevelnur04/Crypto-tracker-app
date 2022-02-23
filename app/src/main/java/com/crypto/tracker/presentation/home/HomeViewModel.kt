@@ -12,6 +12,7 @@ import kotlinx.coroutines.launch
 
 class HomeViewModel(private val repository: ProjectRepository): BaseViewModel(), LifecycleObserver {
     val adapter = HomeAdapter{
+        _navigateToItemDetail.postValue(ClickModel(it,true))
         //to do on click
     }
 
