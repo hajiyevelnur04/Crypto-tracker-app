@@ -5,10 +5,13 @@
       <map>
         <entry key="../../.gradle/caches/transforms-3/68e22296c2896270fb08884292189a54/transformed/material-1.5.0/res/drawable/mtrl_ic_error.xml" value="0.2445" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2445" />
+        <entry key="app/src/main/res/drawable/launch_screen.xml" value="0.2635" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2671875" />
-        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.215625" />
+        <entry key="app/src/main/res/layout/fragment_history.xml" value="0.14175724637681159" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="app/src/main/res/layout/item_crypto.xml" value="0.25625" />
         <entry key="app/src/main/res/layout/partial_home_item.xml" value="0.25625" />
+        <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.19947916666666668" />
       </map>
     </option>
   </component>

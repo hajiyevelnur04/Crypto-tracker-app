@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:name=".CryptoTrackerApplication"
-        android:theme="@style/Theme.CryptoTrackerApp">
+        android:theme="@style/AppTheme.Launcher">
         <activity
             android:name=".MainActivity"
             android:exported="true">
