@@ -14,9 +14,10 @@
         <entry key="app/src/main/res/layout/fragment_alert.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_coin_ticker.xml" value="0.1633176571184267" />
         <entry key="app/src/main/res/layout/fragment_favorite.xml" value="0.14175724637681159" />
-        <entry key="app/src/main/res/layout/fragment_history.xml" value="0.14175724637681159" />
+        <entry key="app/src/main/res/layout/fragment_history.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.25" />
-        <entry key="app/src/main/res/layout/item_coin_market.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/item_alert_type.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_coin_market.xml" value="0.5772558714462299" />
         <entry key="app/src/main/res/layout/item_coin_ticker.xml" value="0.30867892261650276" />
         <entry key="app/src/main/res/layout/item_crypto.xml" value="0.25625" />
         <entry key="app/src/main/res/layout/item_recyclerview_footer.xml" value="0.25" />

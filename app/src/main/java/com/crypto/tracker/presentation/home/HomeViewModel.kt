@@ -4,6 +4,7 @@ import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.crypto.tracker.base.BaseViewModel
+import com.crypto.tracker.model.local.AlertType
 import com.crypto.tracker.model.remote.ClickModel
 import com.crypto.tracker.model.remote.Currency
 import com.crypto.tracker.repository.ProjectRepository
@@ -31,6 +32,12 @@ class HomeViewModel(private val repository: ProjectRepository): BaseViewModel(),
             serverResponse.data.let(adapter::submitList)
         }
 
+    }
+
+    fun addAlertType(alertType: AlertType){
+        coroutineScopeIO.launch {
+            repository.insertAlertType(alertType)
+        }
     }
 
 }

@@ -28,7 +28,7 @@ fun MaterialTextView.bindText(value: Double) {
     val valueTwoDigit = String.format("%.2f", value)
     if(value<0){
         this.text = "$valueTwoDigit"
-        this.setTextColor(ContextCompat.getColor(this.context, R.color.colorPrimary))
+        this.setTextColor(ContextCompat.getColor(this.context, R.color.red))
     } else {
         this.text = "+$valueTwoDigit"
         this.setTextColor(ContextCompat.getColor(this.context, R.color.green))

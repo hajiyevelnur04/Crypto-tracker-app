@@ -6,6 +6,7 @@ import com.crypto.tracker.network.AuthInterceptor
 import com.crypto.tracker.network.RetrofitClient
 import com.crypto.tracker.network.handler.ResponseHandler
 import com.crypto.tracker.presentation.cointickers.CoinTickerViewModel
+import com.crypto.tracker.presentation.history.HistoryViewModel
 import com.crypto.tracker.repository.ProjectRepository
 import org.koin.androidx.viewmodel.dsl.viewModel
 import org.koin.dsl.module
@@ -20,6 +21,7 @@ val appModule = module {
 
     viewModel { MainViewModel() }
     viewModel { HomeViewModel(get()) }
+    viewModel { HistoryViewModel(get()) }
     viewModel { CoinTickerViewModel(get()) }
 
 }

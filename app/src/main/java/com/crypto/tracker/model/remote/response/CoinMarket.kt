@@ -1,5 +1,6 @@
 package com.crypto.tracker.model.remote.response
 
+import androidx.room.ColumnInfo
 import com.google.gson.annotations.SerializedName
 
 data class CoinMarket (
@@ -17,5 +18,4 @@ data class CoinMarket (
     val priceChangePercentage: Double?,
     @SerializedName("last_updated")
     val lastUpdated: String?
-
 )

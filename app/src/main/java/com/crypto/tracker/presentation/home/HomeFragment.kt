@@ -9,6 +9,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.crypto.tracker.databinding.FragmentHomeBinding
 import com.crypto.tracker.model.remote.response.CoinMarket
 import com.crypto.tracker.utils.CustomDialog
+import com.crypto.tracker.utils.getAlertTypeConverted
 
 class HomeFragment : Fragment() {
 
@@ -37,7 +38,8 @@ class HomeFragment : Fragment() {
 
     private fun startDialog(coinMarket: CoinMarket){
         var customDialog = CustomDialog(coinMarket, CustomDialog.ButtonClick {
-            // to do something
+            // set default selected cryptocurrency alert functionality on
+            homeViewModel.addAlertType(getAlertTypeConverted(coinMarket,true,0.0,100.0))
         })
         customDialog.show(childFragmentManager,"tag")
     }

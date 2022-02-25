@@ -3,6 +3,7 @@ package com.crypto.tracker
 import android.annotation.SuppressLint
 import android.app.Application
 import android.content.Context
+import com.crypto.tracker.db.CryptoTrackerDatabase
 import com.crypto.tracker.di.appModule
 import com.crypto.tracker.utils.PreferenceHelper
 import com.google.firebase.FirebaseApp
@@ -19,6 +20,9 @@ val appContext: Context? by lazy {
 val prefs: PreferenceHelper? by lazy {
     CryptoTrackerApplication.prefs
 }
+val database: CryptoTrackerDatabase? by lazy {
+    CryptoTrackerApplication.database
+}
 
 
 
@@ -28,6 +32,7 @@ class CryptoTrackerApplication: Application() {
         @SuppressLint("StaticFieldLeak")
         var appContext: Context? = null
         var prefs: PreferenceHelper? = null
+        var database: CryptoTrackerDatabase? = null
     }
 
     override fun onCreate() {
@@ -35,6 +40,8 @@ class CryptoTrackerApplication: Application() {
         appContext = applicationContext
 
         prefs = PreferenceHelper()
+
+        database = CryptoTrackerDatabase.getInstance(applicationContext)
 
         FirebaseApp.initializeApp(this)
         // start koin injection
