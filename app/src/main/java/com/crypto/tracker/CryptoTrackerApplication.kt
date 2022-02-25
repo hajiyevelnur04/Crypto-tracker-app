@@ -5,6 +5,7 @@ import android.app.Application
 import android.content.Context
 import com.crypto.tracker.di.appModule
 import com.crypto.tracker.utils.PreferenceHelper
+import com.google.firebase.FirebaseApp
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidFileProperties
 import org.koin.android.ext.koin.androidLogger
@@ -34,6 +35,8 @@ class CryptoTrackerApplication: Application() {
         appContext = applicationContext
 
         prefs = PreferenceHelper()
+
+        FirebaseApp.initializeApp(this)
         // start koin injection
         startKoin {
             androidLogger(Level.DEBUG)

@@ -1,15 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
     <data>
-
+        <variable
+            name="model"
+            type="com.crypto.tracker.model.remote.response.CoinMarket" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:padding="@dimen/_16dp">
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/materialTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@{@string/current_price(model.name,model.currentPrice.toString())}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:text="Current price of bitcoin: 3345.23" />
 
 
         <com.google.android.material.textfield.TextInputLayout
@@ -17,21 +29,22 @@
             style="@style/Widget.Design.TextInputLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginRight="@dimen/_4dp"
             app:helperTextTextColor="@color/gray"
             app:hintTextColor="@color/black"
-            android:layout_marginRight="@dimen/_4dp"
             app:layout_constraintEnd_toStartOf="@+id/to"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/materialTextView">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/from_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorPrimary"
+                android:gravity="center"
                 android:hint="@string/from"
                 android:inputType="number"
-                android:gravity="center"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:textColor="@color/black"
@@ -44,21 +57,22 @@
             style="@style/Widget.Design.TextInputLayout"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/_4dp"
             app:helperTextTextColor="@color/gray"
             app:hintTextColor="@color/black"
-            android:layout_marginLeft="@dimen/_4dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@+id/from"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/materialTextView">
 
             <com.google.android.material.textfield.TextInputEditText
                 android:id="@+id/to_edit"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorPrimary"
+                android:gravity="center"
                 android:hint="@string/to"
                 android:inputType="number"
-                android:gravity="center"
                 android:maxLines="1"
                 android:singleLine="true"
                 android:textColor="@color/black"
@@ -73,7 +87,7 @@
             android:layout_width="0dp"
             android:layout_height="56dp"
             android:layout_marginTop="@dimen/_8dp"
-            android:backgroundTint="@color/colorPrimary"
+            android:background="@drawable/default_dark_theme_button_background_ripple"
             android:insetTop="0dp"
             android:insetBottom="0dp"
             android:text="@string/ok"

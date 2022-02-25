@@ -9,4 +9,5 @@
     <string name="from">from</string>
     <string name="to">to</string>
     <string name="alert_title">Set min ot max value</string>
+    <string name="current_price">Current Price of 1%s : 2%s</string>
 </resources>

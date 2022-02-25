@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import com.crypto.tracker.databinding.FragmentHomeBinding
 import com.crypto.tracker.model.remote.response.CoinMarket
-import com.crypto.tracker.utils.showDialog
+import com.crypto.tracker.utils.CustomDialog
 
 class HomeFragment : Fragment() {
 
@@ -29,11 +29,17 @@ class HomeFragment : Fragment() {
         homeViewModel.navigateToItemDetail.observe(viewLifecycleOwner){
             if(it.clicked){
                 val model = it.item as CoinMarket
-                showDialog(requireContext())
+                startDialog(model)
             }
         }
         return binding.root
     }
 
+    private fun startDialog(coinMarket: CoinMarket){
+        var customDialog = CustomDialog(coinMarket, CustomDialog.ButtonClick {
+            // to do something
+        })
+        customDialog.show(childFragmentManager,binding.cryptoList.tag.toString())
+    }
 
 }

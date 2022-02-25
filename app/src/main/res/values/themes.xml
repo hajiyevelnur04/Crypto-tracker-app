@@ -14,4 +14,54 @@
         <item name="colorPrimaryDark">@color/colorPrimary</item>
         <item name="android:navigationBarColor">@color/colorPrimary</item>
     </style>
+
+    <!-- Body -->
+    <style name="Body">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/gray</item>
+    </style>
+
+    <style name="Body1" parent="Body">
+        <item name="android:textSize">@dimen/b1</item>
+        <item name="android:lineSpacingExtra">@dimen/line45</item>
+        <!--<item name="android:textFontWeight">@integer/weight4</item>-->
+    </style>
+
+    <style name="Body2" parent="Body">
+        <item name="android:textSize">@dimen/b2</item>
+        <item name="android:lineSpacingExtra">@dimen/line35</item>
+        <!--<item name="android:textFontWeight">@integer/weight4</item>-->
+    </style>
+
+    <style name="Body3" parent="Body">
+        <item name="android:textSize">@dimen/b3</item>
+        <item name="android:lineSpacingExtra">@dimen/line35</item>
+        <!--<item name="android:textFontWeight">@integer/weight4</item>-->
+    </style>
+
+
+    <!-- Headings -->
+    <style name="HeaderText">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
+    <style name="HeaderTextH1" parent="HeaderText">
+        <item name="android:textSize">@dimen/_16dp</item>
+        <item name="android:lineSpacingExtra">@dimen/line25</item>
+    </style>
+
+    <style name="HeaderTextH2" parent="HeaderText">
+        <item name="android:textSize">@dimen/_18dp</item>
+        <item name="android:lineSpacingExtra">@dimen/line35</item>
+    </style>
+
+
+    <style name="HeaderTextH3" parent="HeaderText">
+        <item name="android:textSize">@dimen/_20dp</item>
+        <item name="android:lineSpacingExtra">@dimen/line45</item>
+    </style>
+
 </resources>

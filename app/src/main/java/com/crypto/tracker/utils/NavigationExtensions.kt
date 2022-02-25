@@ -2,7 +2,9 @@ package com.crypto.tracker.utils
 
 import android.content.Intent
 import android.net.Uri
+import android.os.Build
 import android.util.SparseArray
+import androidx.annotation.RequiresApi
 import androidx.core.util.forEach
 import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.MutableLiveData
@@ -14,11 +16,19 @@ import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
+/**
+ * Manages the various graphs needed for a [BottomNavigationView].
+ *
+ * This sample is a workaround until the Navigation Component supports multiple back stacks.
+ */
+
+
 private lateinit var mNavGraphIds: List<Int>
 private lateinit var mFragmentManager: FragmentManager
 private lateinit var mIntent: Intent
 private var mContainerId: Int = 0
 
+@RequiresApi(Build.VERSION_CODES.S)
 fun BottomNavigationView.setupWithNavigationController(
     navGraphIds: List<Int>,
     fragmentManager: FragmentManager,

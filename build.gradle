@@ -1,34 +1,64 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
-plugins {
-    id 'com.android.application' version '7.1.0-rc01' apply false
-    id 'com.android.library' version '7.1.0-rc01' apply false
-    id 'org.jetbrains.kotlin.android' version '1.5.30' apply false
+buildscript {
+    ext{
+        // Retrofit
+        version_retrofit = '2.9.0'
+        okhttp_version_interceptor = '5.0.0-alpha.5'
+
+        // Coroutines
+        version_kotlin_coroutines = "1.6.0"
+
+        // ViewModel and LiveData
+        version_lifecycle = "2.3.1"
+        version_lifecycle_extensions = '2.2.0'
+
+        // Navigation
+        version_navigation = "2.3.5"
+
+        // Koin
+        version_koin = '3.2.0-beta-1'
+
+        //navigation
+        version_navigation = '2.3.5'
+
+        // Glide image
+        version_glide = '4.13.0'
+
+        // Firebase
+        version_google_auth = '19.0.0'
+        version_firebase_perf = "19.0.9"
+        version_firebase_messaging = "21.0.0"
+
+        // Navigation
+        version_kotlin = "1.4.0"
+    }
+
+    repositories {
+        google()
+        maven { url 'https://jitpack.io' }
+        mavenCentral()
+    }
+
+    dependencies {
+        classpath 'com.android.tools.build:gradle:7.0.4'
+        classpath 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.5.31'
+        classpath 'com.google.gms:google-services:4.3.10'
+        classpath "androidx.navigation:navigation-safe-args-gradle-plugin:$version_navigation"
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.7.1'
+        // NOTE: Do not place your application dependencies here; they belong
+        // in the individual module build.gradle files
+    }
 }
 
-ext{
-    // Retrofit
-    version_retrofit = '2.9.0'
-    okhttp_version_interceptor = "4.9.3"
-
-    // Coroutines
-    version_kotlin_coroutines = "1.6.0"
-
-    // ViewModel and LiveData
-    version_lifecycle = "2.5.0-alpha02"
-    version_lifecycle_extensions = '2.2.0'
-
-    // Navigation
-    version_navigation = "2.3.5"
-
-    // Koin
-    version_koin = '3.2.0-beta-1'
-
-    // Navigation
-    version_navigation = "2.3.5"
-
-    // Glide image
-    version_glide = '4.13.0'
+allprojects {
+    repositories {
+        google()
+        maven { url 'https://jitpack.io' }
+        mavenCentral()
+    }
 }
+
+
 
 task clean(type: Delete) {
     delete rootProject.buildDir
