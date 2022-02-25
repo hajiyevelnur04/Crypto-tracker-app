@@ -39,7 +39,7 @@ class HomeFragment : Fragment() {
         var customDialog = CustomDialog(coinMarket, CustomDialog.ButtonClick {
             // to do something
         })
-        customDialog.show(childFragmentManager,binding.cryptoList.tag.toString())
+        customDialog.show(childFragmentManager,"tag")
     }
 
 }
