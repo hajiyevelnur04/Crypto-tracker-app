@@ -50,15 +50,16 @@
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/currentPrice"
             style="@style/TextAppearance.MaterialComponents.Body1"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/_64dp"
             android:layout_marginRight="@dimen/_64dp"
-            android:text="@{model.currentPrice.toString()}"
+            android:gravity="end"
+            setDoubleText="@{model.priceChangePercentage}"
             app:layout_constraintBottom_toBottomOf="@+id/image"
             app:layout_constraintEnd_toStartOf="@+id/favorite"
             app:layout_constraintTop_toTopOf="@+id/image"
-            tools:text="322.12" />
+            tools:text="00.00" />
 
         <ImageView
             android:id="@+id/favorite"
