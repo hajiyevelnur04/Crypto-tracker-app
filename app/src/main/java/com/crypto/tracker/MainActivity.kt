@@ -1,6 +1,7 @@
 package com.crypto.tracker
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -8,12 +9,9 @@ import android.view.View
 import androidx.activity.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.crypto.tracker.databinding.ActivityMainBinding
 import com.crypto.tracker.utils.setupWithNavigationController
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.navigation.NavigationBarView
 
 class MainActivity : AppCompatActivity() {
 
@@ -30,8 +28,23 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
-
         setupBottomNavigationBar()
+
+        // check if service need to start
+        if(prefs?.isServiceRunnable() == true)
+            startService()
+        else
+            stopService()
+    }
+
+    private fun startService() {
+        if (!AlertTypeService.isRunning)
+            startService(Intent(appContext, AlertTypeService::class.java))
+    }
+
+    private fun stopService() {
+        if (AlertTypeService.isRunning)
+            stopService(Intent(appContext, AlertTypeService::class.java))
     }
 
     private fun setupBottomNavigationBar() {

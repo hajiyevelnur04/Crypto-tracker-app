@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.crypto.tracker.databinding.FragmentHistoryBinding
+import com.crypto.tracker.prefs
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HistoryFragment : Fragment() {
@@ -25,6 +26,12 @@ class HistoryFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         historyViewModel.getAllAlerts().observe(viewLifecycleOwner){
+            for (i in it.indices){
+                if(it[i]!!.isActive == true){
+                    prefs?.setServiceRunnable(true)
+                    break
+                }
+            }
             it.let(historyViewModel.adapter::submitList)
         }
         historyViewModel.navigateToItemStatus.observe(viewLifecycleOwner){

@@ -1,7 +1,8 @@
 package com.crypto.tracker
 
-import androidx.lifecycle.ViewModel
+import com.crypto.tracker.base.BaseViewModel
+import com.crypto.tracker.repository.ProjectRepository
 
-class MainViewModel : ViewModel() {
+class MainViewModel() : BaseViewModel() {
 
 }

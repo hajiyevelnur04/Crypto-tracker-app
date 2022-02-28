@@ -16,15 +16,13 @@ class PreferenceHelper {
         editor.apply()
     }
 
-
-    fun isIntroPassed(): Boolean {
-        return sharedPref.getBoolean(KEY_INTRO, false)
+    fun isServiceRunnable(): Boolean {
+        return sharedPref.getBoolean(KEY_SERVICE, false)
     }
 
-
-    fun setIntroPassed() {
+    fun setServiceRunnable(isOn: Boolean) {
         val editor: SharedPreferences.Editor? = sharedPref.edit()
-        editor?.putBoolean(KEY_INTRO, true)
+        editor?.putBoolean(KEY_SERVICE, isOn)
         editor?.apply()
     }
 }
