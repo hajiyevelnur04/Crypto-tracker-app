@@ -4,7 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
-import com.crypto.tracker.database
+import com.crypto.tracker.db.CryptoTrackerDao
 import com.crypto.tracker.model.local.AlertType
 import com.crypto.tracker.model.remote.Currency
 import com.crypto.tracker.model.remote.response.CryptoModel
@@ -17,6 +17,7 @@ import kotlinx.coroutines.withContext
 
 class ProjectRepository(
     private val api: ProjectApi,
+    private val dao: CryptoTrackerDao,
     private val responseHandler: ResponseHandler
 ) {
 
@@ -43,15 +44,15 @@ class ProjectRepository(
     }
 
     fun insertAlertType(model: AlertType){
-        return database!!.dao!!.insert(alertType = model)!!
+        return dao!!.insert(alertType = model)!!
     }
 
     fun updateAlertType(model: AlertType){
-        return database!!.dao!!.update(alertType = model)!!
+        return dao!!.update(alertType = model)!!
     }
 
     fun getAllAlertType(): LiveData<List<AlertType?>> {
-        return database!!.dao!!.getAlerts()
+        return dao!!.getAlerts()
     }
 
 

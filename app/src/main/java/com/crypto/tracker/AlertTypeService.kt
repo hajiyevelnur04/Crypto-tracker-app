@@ -13,7 +13,11 @@ import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.lifecycle.LifecycleService
+import com.crypto.tracker.utils.ACTION_PAUSE_SERVICE
+import com.crypto.tracker.utils.ACTION_START_OR_RESUME_SERVICE
+import com.crypto.tracker.utils.ACTION_STOP_SERVICE
 import com.crypto.tracker.utils.CHANNEL_ID
+import timber.log.Timber
 
 class AlertTypeService : LifecycleService() {
 
@@ -28,6 +32,19 @@ class AlertTypeService : LifecycleService() {
     }
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        intent?.let {
+            when(it.action){
+                ACTION_START_OR_RESUME_SERVICE ->{
+                    Timber.d("Started or resumed service")
+                }
+                ACTION_PAUSE_SERVICE ->{
+                    Timber.d("Paused service")
+                }
+                ACTION_STOP_SERVICE ->{
+                    Timber.d("Stopped service")
+                }
+            }
+        }
         return super.onStartCommand(intent, flags, startId)
         Log.d(TAG, "Service started")
         startForeground()

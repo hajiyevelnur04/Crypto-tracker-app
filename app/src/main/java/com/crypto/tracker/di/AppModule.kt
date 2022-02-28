@@ -2,6 +2,9 @@ package com.crypto.tracker.di
 
 import com.crypto.tracker.presentation.home.HomeViewModel
 import com.crypto.tracker.MainViewModel
+import com.crypto.tracker.appContext
+import com.crypto.tracker.db.DatabaseClient.provideCryptoTrackerDao
+import com.crypto.tracker.db.DatabaseClient.provideDatabase
 import com.crypto.tracker.network.AuthInterceptor
 import com.crypto.tracker.network.RetrofitClient
 import com.crypto.tracker.network.handler.ResponseHandler
@@ -17,11 +20,14 @@ val appModule = module {
     factory { AuthInterceptor() }
 
     single { RetrofitClient.provideApi() }
-    factory { ProjectRepository(get(), get()) }
+    factory { ProjectRepository(get(), get(),get()) }
 
     viewModel { MainViewModel() }
     viewModel { HomeViewModel(get()) }
     viewModel { HistoryViewModel(get()) }
     viewModel { CoinTickerViewModel(get()) }
+
+    single { provideDatabase(appContext!!) }
+    single { provideCryptoTrackerDao(get()) }
 
 }
