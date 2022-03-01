@@ -58,5 +58,7 @@ class ProjectRepository(
 
     suspend fun getCoinMarket(currency: Currency) = safeApiCall { api.getCoinMarkets(currency.toString()) }
     suspend fun getSimplePrice(ids: String,vs_currencies: String) = safeApiCall { api.getSimplePrice(ids,vs_currencies) }
+    suspend fun getCoinList(currency: Currency) = safeApiCall { api.getCoinMarkets() }
+    suspend fun getSupportedCurrencies() = safeApiCall { api.getSupportedCurrencies() }
 
 }

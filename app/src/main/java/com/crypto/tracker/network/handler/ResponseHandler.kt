@@ -15,13 +15,8 @@ open class ResponseHandler {
 
         return when (e) {
             is HttpException -> {
-
                 var message = ""
                 val errorJsonString = e.response()?.errorBody()?.string()
-                // extra resources
-                /*var _status = JSONObject(errorJsonString).getString("status")
-                var _statusCode = JSONObject(errorJsonString).getString("statusCode")
-                var _timestamp = JSONObject(errorJsonString).getString("timestamp")*/
                 message = try {
                     JSONObject(errorJsonString).getString("message")
                 } catch (e:Exception){

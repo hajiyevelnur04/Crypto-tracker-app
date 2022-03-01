@@ -33,6 +33,8 @@ class HomeFragment : Fragment() {
                 startDialog(model)
             }
         }
+
+        // we can change
         return binding.root
     }
 

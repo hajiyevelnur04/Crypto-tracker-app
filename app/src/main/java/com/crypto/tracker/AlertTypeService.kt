@@ -1,7 +1,5 @@
 package com.crypto.tracker
 
-import android.app.Notification
-import android.app.Notification.VISIBILITY_PRIVATE
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.NotificationManager.IMPORTANCE_LOW
@@ -9,7 +7,6 @@ import android.app.PendingIntent
 import android.app.PendingIntent.FLAG_UPDATE_CURRENT
 import android.content.Context
 import android.content.Intent
-import android.graphics.Color
 import android.os.Binder
 import android.os.Build
 import android.os.IBinder
@@ -22,6 +19,7 @@ import androidx.lifecycle.MutableLiveData
 import com.crypto.tracker.db.CryptoTrackerDao
 import com.crypto.tracker.model.local.AlertType
 import com.crypto.tracker.model.remote.response.CoinMarket
+import com.crypto.tracker.model.remote.response.SimplePriceResponse
 import com.crypto.tracker.repository.ProjectRepository
 import com.crypto.tracker.utils.*
 import kotlinx.coroutines.CoroutineScope
@@ -45,8 +43,8 @@ class AlertTypeService(
         var isRunning = false
     }
 
-    private val _navigateToPriceList = MutableLiveData<List<CoinMarket>>()
-    val navigateToPriceList: LiveData<List<CoinMarket>>
+    private val _navigateToPriceList = MutableLiveData<SimplePriceResponse>()
+    val navigateToPriceList: LiveData<SimplePriceResponse>
         get() = _navigateToPriceList
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
@@ -68,6 +66,10 @@ class AlertTypeService(
         startForeground()
         isRunning = true
         setupMinMaxPriceChecker()
+
+        navigateToPriceList.observe(this){
+
+        }
         return START_STICKY
     }
 
