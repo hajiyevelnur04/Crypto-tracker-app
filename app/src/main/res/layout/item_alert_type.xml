@@ -48,7 +48,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/min_price"
-            setDoubleText="@{model.minPrice}"
+            setMinValue="@{model.minPrice}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -58,7 +58,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/max_price"
-            setDoubleText="@{model.maxPrice}"
+            setMaxValue="@{model.maxPrice}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="@+id/description"

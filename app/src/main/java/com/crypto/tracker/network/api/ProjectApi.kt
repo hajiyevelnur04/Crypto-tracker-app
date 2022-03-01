@@ -14,4 +14,7 @@ interface ProjectApi {
 
     @GET("coins/markets")
     suspend fun getCoinMarkets(@Query("vs_currency") vsCurrency: String): List<CoinMarket>
+
+    @GET("simple/price")
+    suspend fun getSimplePrice(@Query("ids") ids: String,@Query("vs_currency") vsCurrency: String): List<CoinMarket>
 }

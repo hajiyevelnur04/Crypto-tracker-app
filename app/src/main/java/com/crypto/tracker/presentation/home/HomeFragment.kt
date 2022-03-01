@@ -38,8 +38,8 @@ class HomeFragment : Fragment() {
 
     private fun startDialog(coinMarket: CoinMarket){
         var customDialog = CustomDialog(coinMarket, CustomDialog.ButtonClick {
-            // set default selected cryptocurrency alert functionality on
-            homeViewModel.addAlertType(getAlertTypeConverted(coinMarket,true,0.0,100.0))
+            // set default selected cryptocurrency alert functionality on or off
+            homeViewModel.addAlertType(getAlertTypeConverted(coinMarket,true, it!!.minPrice!!, it!!.maxPrice!!))
         })
         customDialog.show(childFragmentManager,"tag")
     }

@@ -11,7 +11,7 @@ import kotlinx.coroutines.launch
 class HistoryViewModel(private val repository: ProjectRepository): BaseViewModel(), LifecycleObserver {
 
     val adapter = HistoryAdapter{
-        // to do when swich changed
+        // to do when switch changed
         val alertType = it
         alertType.isActive = alertType.isActive != true
         _navigateToItemStatus.postValue(alertType)

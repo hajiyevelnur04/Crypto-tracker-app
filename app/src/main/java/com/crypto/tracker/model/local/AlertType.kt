@@ -8,6 +8,8 @@ import androidx.room.PrimaryKey
 data class AlertType(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
+    @ColumnInfo(name = "ids")
+    val ids: String,
     @ColumnInfo(name = "name")
     val name: String,
     @ColumnInfo(name = "symbol")

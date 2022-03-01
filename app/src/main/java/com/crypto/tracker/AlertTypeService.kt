@@ -1,9 +1,13 @@
 package com.crypto.tracker
 
 import android.app.Notification
+import android.app.Notification.VISIBILITY_PRIVATE
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.app.NotificationManager.IMPORTANCE_LOW
 import android.app.PendingIntent
+import android.app.PendingIntent.FLAG_UPDATE_CURRENT
+import android.content.Context
 import android.content.Intent
 import android.graphics.Color
 import android.os.Binder
@@ -13,13 +17,23 @@ import android.util.Log
 import androidx.annotation.RequiresApi
 import androidx.core.app.NotificationCompat
 import androidx.lifecycle.LifecycleService
-import com.crypto.tracker.utils.ACTION_PAUSE_SERVICE
-import com.crypto.tracker.utils.ACTION_START_OR_RESUME_SERVICE
-import com.crypto.tracker.utils.ACTION_STOP_SERVICE
-import com.crypto.tracker.utils.CHANNEL_ID
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import com.crypto.tracker.db.CryptoTrackerDao
+import com.crypto.tracker.model.local.AlertType
+import com.crypto.tracker.model.remote.response.CoinMarket
+import com.crypto.tracker.repository.ProjectRepository
+import com.crypto.tracker.utils.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import timber.log.Timber
+import kotlin.coroutines.coroutineContext
 
-class AlertTypeService : LifecycleService() {
+class AlertTypeService(
+    var dao:CryptoTrackerDao,
+    var repository: ProjectRepository
+) : LifecycleService() {
 
     val TAG = "AlertTypeService"
     private val binder = ServiceBinder()
@@ -30,6 +44,10 @@ class AlertTypeService : LifecycleService() {
     companion object{
         var isRunning = false
     }
+
+    private val _navigateToPriceList = MutableLiveData<List<CoinMarket>>()
+    val navigateToPriceList: LiveData<List<CoinMarket>>
+        get() = _navigateToPriceList
 
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
         intent?.let {
@@ -54,47 +72,66 @@ class AlertTypeService : LifecycleService() {
     }
 
     private fun setupMinMaxPriceChecker() {
-        TODO("Not yet implemented")
+        val activeAlertType = arrayListOf<AlertType>()
+        CoroutineScope(Dispatchers.Main).launch {
+            getAlertList().observe(this@AlertTypeService){
+                it.forEach {
+                    if(it!!.isActive == true){
+                        activeAlertType.add(it)
+                    }
+                }
+            }
+        }
+
+        CoroutineScope(Dispatchers.Main).launch {
+            activeAlertType.forEach {
+                val data = repository.getSimplePrice(it.ids,it.symbol)
+                _navigateToPriceList.postValue(data.data!!)
+            }
+        }
+
+    }
+
+    private fun getAlertList():LiveData<List<AlertType?>>{
+        return dao.getAlerts()
     }
 
     private fun startForeground() {
-        var channelId = CHANNEL_ID
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) channelId =
-            createNotificationChannel("CryptoTracker", "Price Checker Service")
+        val notificationManager = getSystemService(Context.NOTIFICATION_SERVICE)
+                as NotificationManager
 
-        val intent = Intent(this, MainActivity::class.java)
-        intent.putExtra("type", 1)
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            createNotificationChannel("CryptoTracker", "Price Checker Service",notificationManager)
+        }
 
-        val pendingIntent = PendingIntent.getActivity(
-            this, 0, intent,
-            PendingIntent.FLAG_UPDATE_CURRENT
-        )
-
-        val notificationBuilder = NotificationCompat.Builder(this, channelId)
-        val notification = notificationBuilder.setOngoing(true)
+        val notificationBuilder = NotificationCompat.Builder(this, NOTIFICATION_CHANNEL_ID)
+            .setOngoing(true)
             .setContentTitle(getString(R.string.app_name))
             .setContentText("test")
             .setSmallIcon(R.drawable.ic_home)
-            .setContentIntent(pendingIntent)
-            .build()
+            .setContentIntent(getMainActivityPendingIntent())
 
-
-        startForeground(12345, notification)
+        startForeground(NOTIFICATION_ID, notificationBuilder.build())
     }
 
+    private fun getMainActivityPendingIntent() = PendingIntent.getActivity(
+        this,
+        0,
+        Intent(this, MainActivity::class.java).also {
+            it.action = ACTION_SHOW_TRACKING_FRAGMENT
+        },
+        FLAG_UPDATE_CURRENT
+    )
+
+
     @RequiresApi(Build.VERSION_CODES.O)
-    private fun createNotificationChannel(channelId: String, channelName: String): String {
-        val channel =
-            NotificationChannel(channelId, channelName, NotificationManager.IMPORTANCE_NONE)
-
-        channel.lockscreenVisibility = Notification.VISIBILITY_PRIVATE
-        channel.lightColor = Color.BLUE
-
-        val service = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
-        service.createNotificationChannel(channel)
-
-        return channelId
+    private fun createNotificationChannel(channelId: String, channelName: String, notificationManager: NotificationManager) {
+        val channel = NotificationChannel(
+            channelId,
+            channelName,
+            IMPORTANCE_LOW)
+        notificationManager.createNotificationChannel(channel)
     }
 
     override fun onBind(intent: Intent): IBinder {

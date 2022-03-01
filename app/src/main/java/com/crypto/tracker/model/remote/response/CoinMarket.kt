@@ -14,6 +14,10 @@ data class CoinMarket (
     val image: String?,
     @SerializedName("current_price")
     val currentPrice: Double?,
+    @SerializedName("min_price")
+    var minPrice: Double?,
+    @SerializedName("max_price")
+    var maxPrice: Double?,
     @SerializedName("price_change_percentage_24h")
     val priceChangePercentage: Double?,
     @SerializedName("last_updated")

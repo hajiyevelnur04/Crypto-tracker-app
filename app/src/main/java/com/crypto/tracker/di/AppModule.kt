@@ -1,5 +1,6 @@
 package com.crypto.tracker.di
 
+import com.crypto.tracker.AlertTypeService
 import com.crypto.tracker.presentation.home.HomeViewModel
 import com.crypto.tracker.MainViewModel
 import com.crypto.tracker.appContext
@@ -29,5 +30,7 @@ val appModule = module {
 
     single { provideDatabase(appContext!!) }
     single { provideCryptoTrackerDao(get()) }
+
+    single { AlertTypeService(get(),get()) }
 
 }

@@ -27,7 +27,10 @@ class CustomDialog(
         builder.setTitle(requireContext().getString(R.string.alert_title))
         builder.setView(binding.root)
         binding.continueBtn.setOnClickListener {
-            clickListener.onClick(model = coinMarket)
+            var model = coinMarket
+            model.minPrice = binding.fromEdit.text.toString().toDouble()
+            model.maxPrice = binding.toEdit.text.toString().toDouble()
+            clickListener.onClick(model = model)
             dismiss()
         }
         return builder.create()

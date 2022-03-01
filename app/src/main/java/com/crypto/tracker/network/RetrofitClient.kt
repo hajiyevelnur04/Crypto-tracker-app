@@ -2,6 +2,7 @@ package com.crypto.tracker.network
 
 import com.crypto.tracker.BuildConfig
 import com.crypto.tracker.network.api.ProjectApi
+import com.crypto.tracker.network.handler.RateLimitInterceptor
 import com.google.gson.Gson
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -20,6 +21,7 @@ object RetrofitClient {
             .connectTimeout(60, TimeUnit.SECONDS)
             .addNetworkInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .addInterceptor(UnAuthorizedInterceptor())
+            .addInterceptor(RateLimitInterceptor())
             .retryOnConnectionFailure(true)
             .build()
 

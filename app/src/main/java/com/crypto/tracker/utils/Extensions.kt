@@ -34,3 +34,17 @@ fun MaterialTextView.bindText(value: Double) {
         this.setTextColor(ContextCompat.getColor(this.context, R.color.green))
     }
 }
+
+@BindingAdapter(value = ["setMinValue"])
+fun MaterialTextView.bindTextMin(value: Double) {
+    val valueTwoDigit = String.format("%.2f", value)
+    this.text = "min -$valueTwoDigit"
+    this.setTextColor(ContextCompat.getColor(this.context, R.color.red))
+}
+
+@BindingAdapter(value = ["setMaxValue"])
+fun MaterialTextView.bindTextMax(value: Double) {
+    val valueTwoDigit = String.format("%.2f", value)
+    this.text = "max +$valueTwoDigit"
+    this.setTextColor(ContextCompat.getColor(this.context, R.color.green))
+}

@@ -29,7 +29,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         setupBottomNavigationBar()
-
         // check if service need to start
         if(prefs?.isServiceRunnable() == true)
             startService()
