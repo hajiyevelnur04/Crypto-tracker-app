@@ -9,7 +9,6 @@ import com.crypto.tracker.model.local.AlertType
     version = 1, exportSchema = false
 )
 
-@TypeConverters()
 abstract class CryptoTrackerDatabase : RoomDatabase() {
-    abstract val dao: CryptoTrackerDao
+    abstract fun getDao(): CryptoTrackerDao
 }

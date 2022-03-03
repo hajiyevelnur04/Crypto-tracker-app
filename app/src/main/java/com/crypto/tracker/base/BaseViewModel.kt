@@ -13,15 +13,16 @@ import kotlinx.coroutines.Job
 
 open class BaseViewModel() : ViewModel() {
 
-    var viewModelJob = Job()
+    var viewModelJobMain = Job()
+    var viewModelJobIo = Job()
 
     private val exceptionHandler = CoroutineExceptionHandler{ _, throwable->
         throwable.printStackTrace()
     }
 
-    val coroutineScopeMain = CoroutineScope(viewModelJob + Dispatchers.Main + exceptionHandler)
+    val coroutineScopeMain = CoroutineScope(viewModelJobMain + Dispatchers.Main + exceptionHandler)
 
-    val coroutineScopeIO = CoroutineScope(viewModelJob + Dispatchers.IO + exceptionHandler)
+    val coroutineScopeIO = CoroutineScope(viewModelJobIo + Dispatchers.IO + exceptionHandler)
 
     private val _status = MutableLiveData<Status>()
     val status: LiveData<Status>
@@ -39,7 +40,8 @@ open class BaseViewModel() : ViewModel() {
 
     override fun onCleared() {
         super.onCleared()
-        viewModelJob.cancel()
+        viewModelJobMain.cancel()
+        viewModelJobIo.cancel()
     }
 
     fun changeUiState(uiState: UiState) {

@@ -1,8 +1,11 @@
 package com.crypto.tracker.utils
 
-import androidx.lifecycle.LiveData
+import androidx.work.*
+import com.crypto.tracker.utils.service.AlertService
+import com.crypto.tracker.appContext
 import com.crypto.tracker.model.local.AlertType
 import com.crypto.tracker.model.remote.response.CoinMarket
+import java.util.concurrent.TimeUnit
 
 fun getAlertTypeConverted(coinMarket: CoinMarket, isActive: Boolean, minPrice: Double, maxPrice: Double): AlertType {
     return AlertType(
@@ -16,4 +19,20 @@ fun getAlertTypeConverted(coinMarket: CoinMarket, isActive: Boolean, minPrice: D
         last_updated = coinMarket.lastUpdated!!,
         isActive = isActive
     )
+}
+
+fun startAlertsService() {
+    WorkManager.getInstance(appContext!!).enqueueUniquePeriodicWork(
+        SERVICE_ALERTS_ID, ExistingPeriodicWorkPolicy.KEEP,
+        PeriodicWorkRequest.Builder(
+            (AlertService::class.java as Class<out ListenableWorker?>), 15, TimeUnit.MINUTES
+        ).setConstraints(
+            Constraints.Builder().setRequiredNetworkType(NetworkType.CONNECTED).build()
+        )
+            .build()
+    )
+}
+
+fun cancelAlertsService() {
+    WorkManager.getInstance(appContext!!).cancelUniqueWork(SERVICE_ALERTS_ID)
 }

@@ -11,6 +11,7 @@
         <entry key="app/src/main/res/drawable/launch_screen.xml" value="0.2635" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2671875" />
         <entry key="app/src/main/res/layout/dialog_value.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/empty_view.xml" value="0.16631038905515177" />
         <entry key="app/src/main/res/layout/fragment_alert.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_coin_ticker.xml" value="0.1633176571184267" />
         <entry key="app/src/main/res/layout/fragment_favorite.xml" value="0.14175724637681159" />
@@ -21,6 +22,8 @@
         <entry key="app/src/main/res/layout/item_coin_ticker.xml" value="0.30867892261650276" />
         <entry key="app/src/main/res/layout/item_crypto.xml" value="0.25625" />
         <entry key="app/src/main/res/layout/item_recyclerview_footer.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/loading_layout.xml" value="0.16631038905515177" />
+        <entry key="app/src/main/res/layout/no_internet_layout.xml" value="0.16631038905515177" />
         <entry key="app/src/main/res/layout/partial_home_item.xml" value="0.25625" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.19947916666666668" />
       </map>

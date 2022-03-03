@@ -13,5 +13,8 @@ const val ACTION_SHOW_TRACKING_FRAGMENT = "ACTION_SHOW_TRACKING_FRAGMENT"
 const val NOTIFICATION_CHANNEL_ID = "crypto_id"
 const val NOTIFICATION_CHANNEL_NAME = "crypto_name"
 const val NOTIFICATION_ID = 1
+var LAST_SERVICES_CHECK: Long = 0
+const val SERVICE_ALERTS_ID = "tracking_qaqa"
+const val DATABASE_NAME = "cryptoTracker.db"
 
 

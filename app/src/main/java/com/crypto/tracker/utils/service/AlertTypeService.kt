@@ -1,4 +1,4 @@
-package com.crypto.tracker
+package com.crypto.tracker.utils.service
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
@@ -16,9 +16,10 @@ import androidx.core.app.NotificationCompat
 import androidx.lifecycle.LifecycleService
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.crypto.tracker.MainActivity
+import com.crypto.tracker.R
 import com.crypto.tracker.db.CryptoTrackerDao
 import com.crypto.tracker.model.local.AlertType
-import com.crypto.tracker.model.remote.response.CoinMarket
 import com.crypto.tracker.model.remote.response.SimplePriceResponse
 import com.crypto.tracker.repository.ProjectRepository
 import com.crypto.tracker.utils.*
@@ -26,7 +27,6 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import kotlin.coroutines.coroutineContext
 
 class AlertTypeService(
     var dao:CryptoTrackerDao,

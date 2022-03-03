@@ -117,4 +117,10 @@ dependencies {
 
     //  logger
     implementation "com.jakewharton.timber:timber:$version_timber"
+
+    // volley
+    implementation 'com.android.volley:volley:1.2.1'
+
+    //lottie animation
+    implementation 'com.airbnb.android:lottie:3.6.0'
 }

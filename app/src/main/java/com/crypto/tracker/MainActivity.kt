@@ -11,6 +11,7 @@ import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
 import com.crypto.tracker.databinding.ActivityMainBinding
+import com.crypto.tracker.utils.service.AlertTypeService
 import com.crypto.tracker.utils.setupWithNavigationController
 
 class MainActivity : AppCompatActivity() {
@@ -30,10 +31,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
         setupBottomNavigationBar()
         // check if service need to start
-        if(prefs?.isServiceRunnable() == true)
-            startService()
+        /*if(prefs?.isServiceRunnable() == true)
+            //startService()
         else
-            stopService()
+            stopService()*/
     }
 
     private fun startService() {

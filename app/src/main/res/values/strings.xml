@@ -10,4 +10,6 @@
     <string name="to">to</string>
     <string name="alert_title">Set min ot max value</string>
     <string name="current_price">Current Price of 1%s : 2%s</string>
+    <string name="no_internet_body">Your network is unavailable. Check your Mobile Network or WiFi connection.</string>
+    <string name="loading_please_wait">loading...</string>
 </resources>

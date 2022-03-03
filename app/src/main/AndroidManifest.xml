@@ -23,7 +23,7 @@
         </activity>
 
         <service
-            android:name=".AlertTypeService"
+            android:name=".utils.service.AlertTypeService"
             android:enabled="true"
             android:foregroundServiceType="dataSync" />
 

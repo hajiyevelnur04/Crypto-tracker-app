@@ -10,6 +10,17 @@
             type="com.crypto.tracker.presentation.home.HomeViewModel" />
     </data>
 
+    <com.crypto.tracker.utils.MultiStateView
+        android:id="@+id/msv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        app:brandError="@{viewModel.brandError}"
+        app:networkClickListener="@{viewModel.onClickListener}"
+        app:status="@{viewModel.status}"
+        app:msv_emptyView="@layout/empty_view"
+        app:msv_loadingView="@layout/loading_layout">
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -29,5 +40,7 @@
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </com.crypto.tracker.utils.MultiStateView>
 
 </layout>
