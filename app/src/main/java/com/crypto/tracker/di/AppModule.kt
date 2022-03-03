@@ -1,6 +1,10 @@
 package com.crypto.tracker.di
 
 import androidx.room.Room
+import androidx.work.ExistingWorkPolicy
+import androidx.work.PeriodicWorkRequest
+
+import androidx.work.WorkManager
 import com.crypto.tracker.presentation.home.HomeViewModel
 import com.crypto.tracker.MainViewModel
 import com.crypto.tracker.db.CryptoTrackerDatabase
@@ -11,10 +15,15 @@ import com.crypto.tracker.presentation.cointickers.CoinTickerViewModel
 import com.crypto.tracker.presentation.history.HistoryViewModel
 import com.crypto.tracker.repository.ProjectRepository
 import com.crypto.tracker.utils.DATABASE_NAME
+import com.crypto.tracker.utils.SERVICE_ALERTS_ID
+import com.crypto.tracker.utils.service.AlertService
 import org.koin.android.ext.koin.androidApplication
+import org.koin.android.ext.koin.androidContext
 import org.koin.androidx.viewmodel.dsl.viewModel
+
 import org.koin.core.context.loadKoinModules
 import org.koin.dsl.module
+import java.util.concurrent.TimeUnit
 
 
 fun injectFeature() = loadFeature
@@ -30,7 +39,7 @@ private val loadFeature by lazy {
 }
 
 val viewModelModule = module {
-    viewModel { MainViewModel() }
+    viewModel { MainViewModel(repository = get()) }
     viewModel { HomeViewModel(repository = get()) }
     viewModel { HistoryViewModel(repository = get()) }
     viewModel { CoinTickerViewModel(repository = get()) }
@@ -52,6 +61,6 @@ val databaseModule = module {
 }
 
 val serviceModule = module {
-    /*single { AlertTypeService(get(),get()) }
-    single { AlertService(get(),get(),get()) }*/
+    //single { AlertTypeService(get(),get()) }
+    single { AlertService(repository = get(),context = androidApplication(),workerParams = get()) }
 }

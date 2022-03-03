@@ -6,19 +6,25 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import androidx.activity.viewModels
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.work.WorkManager
 import com.crypto.tracker.databinding.ActivityMainBinding
+import com.crypto.tracker.model.local.AlertType
+import com.crypto.tracker.utils.cancelAlertsService
 import com.crypto.tracker.utils.service.AlertTypeService
 import com.crypto.tracker.utils.setupWithNavigationController
+import com.crypto.tracker.utils.startAlertsService
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class MainActivity : AppCompatActivity() {
 
     private var destination = 0
 
-    private val mainViewModel: MainViewModel by viewModels()
+    var activeAlertType = arrayListOf<AlertType>()
+
+    private val mainViewModel: MainViewModel by viewModel()
     private val binding: ActivityMainBinding by lazy {
         ActivityMainBinding.inflate(layoutInflater).apply {
             viewModel = mainViewModel
@@ -30,6 +36,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         setupBottomNavigationBar()
+
         // check if service need to start
         /*if(prefs?.isServiceRunnable() == true)
             //startService()

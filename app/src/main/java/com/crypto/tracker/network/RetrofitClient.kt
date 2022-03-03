@@ -21,7 +21,6 @@ object RetrofitClient {
             .connectTimeout(60, TimeUnit.SECONDS)
             .addNetworkInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
             .addInterceptor(UnAuthorizedInterceptor())
-            .addInterceptor(RateLimitInterceptor())
             .retryOnConnectionFailure(true)
             .build()
 

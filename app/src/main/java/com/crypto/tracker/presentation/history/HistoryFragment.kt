@@ -6,7 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.crypto.tracker.databinding.FragmentHistoryBinding
-import com.crypto.tracker.prefs
+import com.crypto.tracker.utils.startAlertsService
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class HistoryFragment : Fragment() {
@@ -27,6 +27,7 @@ class HistoryFragment : Fragment() {
         // Inflate the layout for this fragment
         historyViewModel.getAllAlerts().observe(viewLifecycleOwner){
             it.let(historyViewModel.adapter::submitList)
+            startAlertsService()
         }
         historyViewModel.navigateToItemStatus.observe(viewLifecycleOwner){
             historyViewModel.update(it)
